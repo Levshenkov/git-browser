@@ -1,26 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import axios from 'axios'
-import Header from './header'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-const User = () => {
-  const { username } = useParams()
-  const [repo, setRepo] = useState([])
-
-  useEffect(() => {
-    axios.get(`https://api.github.com/users/${username}/repos`).then((it) => {
-      const ArrName = it.data.map((el) => el.name)
-      setRepo(ArrName)
-    })
-  }, [username])
-
+const User = (props) => {
+  const { name, list } = props
   return (
     <div>
-      <Header name={username} />
       <div>
-        {repo.map((it) => (
+        {list.map((repo) => (
           <div>
-            <Link to={`/${username}/${it}`}>{it}</Link>
+            <Link to={`/${name}/${repo}`}>{repo}</Link>
           </div>
         ))}
       </div>

@@ -9,8 +9,8 @@ import { bindActionCreators } from 'redux'
 import store, { history } from '../redux'
 
 import Home from '../components/home'
-import User from '../components/user'
-import Repos from '../components/repos'
+// import User from '../components/user'
+// import Repos from '../components/repos'
 import DummyView from '../components/dummy-view'
 import NotFound from '../components/404'
 
@@ -85,8 +85,8 @@ export default (props) => {
         <StartupConnected>
           <Switch>
             <Route exact path="/" component={() => <Home />} />
-            <Route exact path="/:username" component={() => <User />} />
-            <Route exact path="/:username/:repositoryname" component={() => <Repos />} />
+            <Route exact path="/:username" component={() => <Home />} />
+            <Route exact path="/:username/:repositoryname" component={() => <Home />} />
             <PrivateRouteConnected exact path="/hidden-route" component={() => <DummyView />} />
             <Route component={() => <NotFound />} />
           </Switch>

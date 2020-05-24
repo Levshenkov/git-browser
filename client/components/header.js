@@ -1,22 +1,27 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
-const Header = (props) => {
+const Header = () => {
+  const { username, repositoryname } = useParams()
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
-      <div className="flex items-center flex-shrink-0 text-black mr-6">
-        <div id="repository-name">{props.repo || props.name || 'Welcome to Git-Search App'}</div>
+    <nav className="flex items-center justify-between flex-wrap bg-gray-800 p-6">
+      <div className="flex items-center flex-shrink-0 text-gray-400 mr-6">
+        <div id="repository-name">{repositoryname || username || 'Welcome to Git Browser'}</div>
       </div>
-      {props.name && (
-        <div id="go-back">
-          <Link to="/">Go Back</Link>
-        </div>
-      )}
-      {props.repo && (
-        <div id="go-repository-list">
-          <Link to={`/${props.name}`}>Go to repos list</Link>
-        </div>
-      )}
+      <div className="flex justify-end text-gray-400">
+        {username && (
+          <div id="go-back">
+            <Link to="/" className="mr-3">
+              Go to main page
+            </Link>
+          </div>
+        )}
+        {repositoryname && (
+          <div id="go-repository-list">
+            <Link to={`/${username}`}>Go to repos list</Link>
+          </div>
+        )}
+      </div>
     </nav>
   )
 }
