@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { updateUsername } from '../redux/reducers/repositories'
 import { history } from '../redux'
 
 const InputView = () => {
-  const [username, setUserName] = useState('')
+  const dispatch = useDispatch()
+  const username = useSelector((store) => store.repositories.username)
   return (
     <div>
       <div className="flex items-center justify-center h-screen">
@@ -15,7 +18,7 @@ const InputView = () => {
               id="input-field"
               value={username}
               onChange={(e) => {
-                setUserName(e.target.value)
+                dispatch(updateUsername(e.target.value))
               }}
             />
           </div>
